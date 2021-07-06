@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do</title>
+</head>
+<body>
+    <h2>To Do</h2>
+    <form method="POST" action="/">
+        {% csrf_token %}
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title">
+    <label for="status">status</label>
+    <input type="checkbox" id="status" name="status">
+    <input type="submit" name="CreateTask">
+    </form>
+    <table>
+    {% for i in tasks %}
+    <tr>
+    <td>{{i.id}}</td>
+    <td>{{i.head}}</td><td> {{i.status}} </td><td>{{i.lastmodified}} </td>
+    <td><a href="{% url 'update' i.id  %}">Update</a></td>
+    <td><a href="{% url 'delete' i.id  %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>
+<style>
+table
+{
+    margin-left:auto;
+    margin-right: auto;
+    width: auto;
+}
+td
+{
+  border:1px solid grey;  
+}
+</style>

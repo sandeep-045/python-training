@@ -1,0 +1,17 @@
+{%  extends 'base.html' %}
+{% block content %}
+{% for i in blogs %}
+<div class="card" style="margin-bottom: 15px;">
+    <div class="card-body" >
+        <small style="display:inline;float:right;">Date created: {{i.date|date:"F d,Y"}}</small>
+        <h3 class="card-title">{{i.title}}</h3>
+        <p class="card-text">{{i.description}}</p>
+        <small>Written-by {{i.author.username}}</small>
+        <a href="#" class="btn btn-primary" style="display:inline;float:right">Author Profile</a>
+      </div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
