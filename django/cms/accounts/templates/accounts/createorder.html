@@ -1,0 +1,23 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+{% if form %}
+<form action="" method="POST">
+    {% csrf_token %}
+   
+    {{form}}
+    <br>
+  
+    <button type="submit">Submit</button>
+</form>
+{% else %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+    {{form}}
+    <br>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
+{% endif %}
+{% endblock %}

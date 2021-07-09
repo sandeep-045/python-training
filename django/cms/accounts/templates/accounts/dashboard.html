@@ -1,0 +1,72 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<div class="card-group">
+    <div class="card text-center">
+      <h1 class="text-primary">{{total}}</h1>
+      <div class="card-body">
+        <h5 class="card-title">Total Orders</h5>
+      </div> 
+    </div>
+    <div class="card text-center">
+        <h1 class="text-warning">{{pending}}</h1>
+        <div class="card-body">
+          <h5 class="card-title">Pending Orders</h5>
+        </div> 
+    </div>
+    <div class="card text-center">
+        <h1 class="text-success">{{delivered}}</h1>
+        <div class="card-body">
+          <h5 class="card-title">Delivered Orders</h5>
+        </div> 
+    </div>
+  </div>
+
+<div class="container mt-4">
+    <table class="table table-striped" style="display:inline">
+      <thead>
+      <td colspan="3">    
+      <a class="btn btn-outline-primary" href="" style="display:block">Create Customer</a>
+      </td>
+      </thead>
+        <tr class="thead-dark">
+            <td>Info</td>
+            <td>Name</td>
+            <td>Phone</td>
+        </tr>
+        
+        {% for customer in customers %}
+        <tr>
+            <td><a class="btn btn-outline-info" href="customers/{{customer.id}}">View</a></td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.phone}}</td>    
+        </tr>
+        {% endfor %}
+        </table> 
+        
+    <table class="table table-striped dark ml-3" style="display:inline;">
+      <thead>
+        <td colspan="5">    
+        <a class="btn btn-outline-primary" href="" style="display:block">Create Order</a>
+        </td>
+      </thead>
+    <tr class="thead-dark">
+        <td>Product</td>
+        <td>price</td>
+        <td>Date Ordered</td>
+        <td>Update</td>
+        <td>Delete</td>
+    </tr>
+   
+    {% for order in orders %}
+    <tr>
+        <td>{{order.product.name}}</td>
+        <td>{{order.date_created|date:"F d,y h:m A"}}</td>
+        <td>{{order.status}}</td>    
+        <td><a href='updateorder/{{order.id}}' class='btn btn-outline-primary'>Update</a></td>
+        <td><a href='deleteorder/{{order.id}}' class='btn btn-outline-danger'>Delete</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>   
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'accounts/base.html' %}
+{% block title %}
+customers
+{% endblock %}
+{% block content %}
+    <div class="container mt-4">
+    <a class='btn btn-outline-primary' href="/createorder/{{customer.id}}">Place Order</a>    
+    <h2>Orders of <span class="text-primary">{{customer.name}} - {{orders.count}}</span></h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+         <th>Product</th>
+         <th>Price</th>
+         <th>Category</th>
+         <th>Status</th>   
+         <th>Update</th>
+        <th>Delete</th>
+        </thead> 
+         
+        {% for order in orders %}
+        <tr>
+            <td>{{order.product.name}}</td>
+            <td>{{order.product.price}}</td>
+            <td>{{order.product.category}}</td>
+            <td>{{order.status}}</td>
+            <td><a href='/updateorder/{{order.id}}' class='btn btn-outline-primary'>Update</a></td>
+            <td><a href='/deleteorder/{{order.id}}' class='btn btn-outline-danger'>Delete</a></td>
+            
+        </tr>
+        {% endfor %}
+        </table>
+</div>
+{% endblock %}ƒ

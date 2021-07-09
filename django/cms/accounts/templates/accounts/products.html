@@ -1,0 +1,24 @@
+{% extends 'accounts/base.html' %}
+{% block title %}
+Products
+{% endblock %}
+{% block content %}
+    <div class="container mt-4">
+    <table class="table table-striped dark">
+    <thead class="thead-dark">
+        <th>name</th>
+        <th>price</th>
+        <th>category</th>
+       
+    </thead>
+    {% for product in products %}
+    <tr>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.category}}</td>
+       
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}
