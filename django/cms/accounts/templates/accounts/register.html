@@ -1,0 +1,48 @@
+{% extends 'accounts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form action="" method='POST' class='form-group lssa'>
+    
+    {% csrf_token %}
+    {{form.username.label}}
+    {{form.username}}
+    <br>
+    {{form.email.label}}
+    {{form.email}}
+    <br>
+    {{form.password1.label}}
+    {{form.password1}}
+    <br>
+    {{form.password2.label}}
+    {{form.password2}}
+  
+    
+    
+    <button type="submit" class='btn btn-primary'>Create account</button>
+</form>
+{{form.errors}}
+<div class='text-center'>
+<small class="text-muted text-center">Already have an account</small>
+<a href="/login">Login here</a>
+</div>
+<script>
+    form_fields=document.getElementsByTagName('input');
+    form_fields[2].placeholder='Enter Your Email';
+    form_fields[1].placeholder='Enter Username';
+    form_fields[3].placeholder='Enter Password';
+    form_fields[4].placeholder='Re Enter Password';
+    
+</script>
+
+<style>
+    .lssa
+    {
+        margin-left:40%;
+        margin-top:10px;
+        max-width:40%;
+        border:1px solid gray;
+        
+    }
+</style>
+{% endblock %}

@@ -1,4 +1,5 @@
 {% extends 'accounts/base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}
 customers
 {% endblock %}
@@ -6,9 +7,17 @@ customers
     <div class="container mt-4">
     <a class='btn btn-outline-primary' href="/createorder/{{customer.id}}">Place Order</a>    
     <h2>Orders of <span class="text-primary">{{customer.name}} - {{orders.count}}</span></h2>
+     
+    <form method='GET'>
+        {{filter.form|crispy}}
+        <button type="submit" class='btn btn-primary'>Search</button>
+    </form> 
+    
+    
     <table class="table table-striped">
         <thead class="thead-dark">
          <th>Product</th>
+         <th>Note</th>
          <th>Price</th>
          <th>Category</th>
          <th>Status</th>   
@@ -19,6 +28,7 @@ customers
         {% for order in orders %}
         <tr>
             <td>{{order.product.name}}</td>
+            <td>{{order.note}}</td>
             <td>{{order.product.price}}</td>
             <td>{{order.product.category}}</td>
             <td>{{order.status}}</td>

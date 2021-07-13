@@ -1,0 +1,47 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+<h3>User Page {{request.user.username}}</h3>
+
+<div class="card-group">
+    <div class="card text-center">
+      <h1 class="text-primary">{{total}}</h1>
+      <div class="card-body">
+        <h5 class="card-title">Total Orders</h5>
+      </div> 
+    </div>
+    <div class="card text-center">
+        <h1 class="text-warning">{{pending}}</h1>
+        <div class="card-body">
+          <h5 class="card-title">Pending Orders</h5>
+        </div> 
+    </div>
+    <div class="card text-center">
+        <h1 class="text-success">{{delivered}}</h1>
+        <div class="card-body">
+          <h5 class="card-title">Delivered Orders</h5>
+        </div> 
+    </div>
+  </div>
+<table class="table table-striped">
+    <thead class="thead-dark">
+     <th>Product</th>
+     <th>Note</th>
+     <th>Price</th>
+     <th>Category</th>
+     <th>Status</th>   
+    </thead> 
+     
+    {% for order in orders %}
+    <tr>
+        <td>{{order.product.name}}</td>
+        <td>{{order.note}}</td>
+        <td>{{order.product.price}}</td>
+        <td>{{order.product.category}}</td>
+        <td>{{order.status}}</td>
+        
+        
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}

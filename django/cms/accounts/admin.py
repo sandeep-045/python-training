@@ -4,4 +4,4 @@ from accounts.models import *
 admin.site.register(Order)
 admin.site.register(Customer)
 admin.site.register(Product)
-admin.site.register(Tag)
+admin.site.register(Tag)    

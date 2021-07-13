@@ -1,0 +1,15 @@
+{% extends 'accounts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<img src="{{request.user.customer.img.url}}" height=100 width=100 alt=none">
+<a href="user" style='float:right;''>Back to Profile</a>
+<br>
+<span class='text-primary'>{{request.user}}'s</span> Account settings
+
+<form action="" method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" class='btn btn-outline-primary'>Submit</button>
+</form>
+{% endblock %}

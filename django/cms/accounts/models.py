@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Tag(models.Model):
     name=models.CharField(max_length=20)
@@ -7,10 +7,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-class Customer(models.Model):
+class Customer(models.Model):   
+    user=models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     name=models.CharField(max_length=50)
+    img=models.ImageField(null=True,blank=True)
     phone=models.CharField(max_length=12)
-    email=models.EmailField(max_length=12)
+    email=models.EmailField(max_length=200)
     date_created=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -33,6 +35,7 @@ class Order(models.Model):
     product=models.ForeignKey(Product,on_delete=models.SET_NULL,null=True)
     status=models.CharField(max_length=200,choices=STA)
     date_created=models.DateTimeField(auto_now_add=True)
+    note=models.CharField(max_length=100,null=True)
     
     def __str__(self):
         return f"{self.customer.name.split(' ')[-1]}'s order"
