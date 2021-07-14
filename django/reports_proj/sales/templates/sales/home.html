@@ -9,12 +9,7 @@ Home
 {% block scripts %}
 
 <script src="{% static 'sales/home.js' %}" defer></script>
-<style>
-  .not-visible
-  {
-    display: none;
-  }
-</style>
+
     
 {% endblock scripts %}
     
@@ -34,7 +29,7 @@ Home
         </div>
         <div class="modal-body" id='modal-id'>
           <div id='alert-box'></div>
-          <form action="" id='report-form'>
+          <form  id='report-form'>
             {% csrf_token %}
             {{report_form|crispy}}
           <br>
