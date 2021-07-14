@@ -1,0 +1,7 @@
+print("Enter Your Name:")
+name = input()
+print("How old are you?")
+age = int(input())
+print("In which year did you graduate?")
+grad_year= int(input())
+print("I am "+name+". I am "+str(age)+"yr old. I am graduated in "+str(grad_year)+".")
