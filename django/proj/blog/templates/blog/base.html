@@ -38,7 +38,7 @@
           <a class="nav-link" href="{% url 'signin' %}">Register</a>
         </li>
         <li class="nav-item" >
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
+            <a class="nav-link" href="/login/">Login</a>
         </li>
       {% else %}
       <li class="nav-item">
@@ -47,12 +47,15 @@
       <li class="nav-item" >
         <a class="nav-link" href="{% url 'post-new' %}">Create Post</a>
       </li>
-      <li class="nav-item" >
-        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-      </li>
-      <li class="nav-item">
-      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-      </li>
+      <div class="nav-item dropdown">
+        <div class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+          <img src="{{request.user.profile.image.url}}" class="rounded-circle" height=30 width=30>&nbsp; {{request.user}}
+        </div>
+        <ul class="dropdown-menu nav-item" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="/profile">Profile</a></li>
+          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+        </ul>
+      </div>
       {% endif %}
       </div>
       </nav>
@@ -74,11 +77,11 @@
     
     
     
-    <div class="container">
+    <div class="container-fluid">
     {% block content %}
     <h1>Hello, world!</h1>
     {% endblock %}
-   </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

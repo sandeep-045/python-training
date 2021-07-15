@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from blog.models import Post
 from django.contrib.auth.models import User
+from blog.filters import PostFilter
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import (
@@ -12,14 +13,24 @@ from django.views.generic import (
 )
 
 # Create your views here.
-def home(request):
-    context={'blogs':Post.objects.all()}
-    return render(request,'home.html',context)
+# def home(request):
+#     posts=Post.objects.all()
+#     fil=PostFilter(request.GET,queryset=posts)
+#     posts=fil.qs
+#     context={'filter':fil,'posts':posts}
+#     return render(request,'home.html',context)
 
 class PostListView(ListView):
     model=Post
     template_name='blog/home.html' #<app>/<model>_<viewtype>.html
     context_object_name='posts'
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        fil = PostFilter(self.request.GET,queryset=self.get_queryset())
+        context['filter']=fil
+        return context
     ordering=['-date']
     paginate_by=5
 
@@ -35,7 +46,7 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date')
     
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin,DetailView):
     model=Post
 
 class PostCreateView(LoginRequiredMixin,CreateView):

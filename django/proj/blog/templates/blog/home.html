@@ -1,6 +1,13 @@
 {%  extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-{% for i in posts %}
+<form method='GET' class='mb-4 mt-4'>
+  {{filter.form}}
+  
+  <button type="submit" class="btn btn-outline-primary ml-2">Search</button>
+</form>
+{% for i in filter.qs %}
+
 <div class="card" style="margin-bottom: 15px;">
     <div class="card-body" >
       
@@ -11,8 +18,16 @@
         <small>Written By-</small>
         <a href="{% url 'user-post' i.author.username %}"><small>{{i.author.username}}</small></a>
         <img src={{i.author.profile.image.url}} alt="none" class="rounded-circle" height=70 width =70 style="display: inline;float:right;">
+        
+        {% if i.author == user %}
+            <div class='mt-2'>
+            <a href='/post/{{i.id}}/update/' class='btn btn-outline-primary card-text'>Update Post</a>
+            <a href='/post/{{i.id}}/delete/' class='btn btn-outline-danger card-item'>Delete Post</a>
+            </div>
+        {% endif %}
       </div>
 </div>
+
 {% endfor %}
 
 {% if is_paginated %}
@@ -43,4 +58,7 @@
 
 </ul>
 {% endif %}
+
+
+
 {% endblock %}

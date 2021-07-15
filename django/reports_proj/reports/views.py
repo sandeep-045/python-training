@@ -15,6 +15,7 @@ import csv
 from products.models import Product
 from customers.models import Customer
 from django.utils.dateparse import parse_date
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 def create_repo_view(request):
     if request.method=='GET':
@@ -34,18 +35,18 @@ def create_repo_view(request):
     return JsonResponse({'none':'none'})
 
 
-class ReportListView(ListView):
+class ReportListView(LoginRequiredMixin,ListView):
     model = Report
     template_name = "reports/main.html"
     ordering=['-created']
 
 
-class ReportDetailView(DetailView):
+class ReportDetailView(LoginRequiredMixin,DetailView):
     model = Report
     template_name = "reports/detail.html"
 
 
-class UploadTemplateView(TemplateView):
+class UploadTemplateView(LoginRequiredMixin,TemplateView):
     template_name = "reports/from_file.html"
 
 def csv_upload_view(request):

@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from blog.models import Post
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from users.forms import *
 from django.contrib.auth.models import User
 # Create your views here.
+
 def register(request):
     if request.method=="POST":
         form=UserRegistrationForm(request.POST)
@@ -31,8 +33,7 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request,f'Successfully Updated')
-            return redirect('profile')
-             
+            return redirect('profile')     
     else:
         u_form=UserUpdateForm(instance=request.user)
         p_form=ProfileUpdateForm(instance=request.user.profile)
@@ -40,3 +41,10 @@ def profile(request):
     context={'u_form':u_form,'p_form':p_form}
     return render(request,'users/profile.html',context)  
 
+def LogoutView(request):
+    set_by_post=False
+    if request.method =='POST':
+        set_by_post=True
+        logout(request)
+    
+    return render(request,'users/logout.html',{'set_by_post':set_by_post})

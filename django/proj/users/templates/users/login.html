@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<!DOCTYPE html>
+{% if not request.user.is_authenticated %}
     <div class="content-section">
     <form action="" method="POST">
         {% csrf_token %}
@@ -19,4 +19,8 @@
             Need an account? <a class="ml-2" href="/signin">Join us Here</a>
         </small>
     </div>
+{% else %}
+You are already logged in
+{% endif %}
+
 {% endblock %}

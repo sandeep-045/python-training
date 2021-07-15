@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
+{% if not user.is_authenticated %}
     <div class="content-section">
     <form action="" method="POST">
         {% csrf_token %}
@@ -22,6 +22,9 @@
             Already Have an account? <a class="ml-2" href="{% url 'login' %}">Login Here</a>
         </small>
     </div>
+{% else %}
+You cannot create a new account while being active Please logout.
+{% endif %}
 <style>
     .custom
     {

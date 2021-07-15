@@ -20,8 +20,11 @@ const myDropzone = new Dropzone('#my-dropzone', {
         this.on('success', function(file, response){
             console.log(response.ex)
             if(response.ex) {
+                
                 handleAlerts('danger', 'File already exists')
+                
             } else {
+                
                 handleAlerts('success', 'Your file has been uploaded')
             }
         })

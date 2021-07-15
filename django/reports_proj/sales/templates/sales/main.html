@@ -9,7 +9,7 @@ Sales
 
 {% for sale in sales %}
    <div class = 'card mb-3'>
-    <a href="{{sale.get_absoulte_url}}">{{sale.transaction_id}}</a>
+    <a href="/detail/{{sale.pk}}">{{sale.transaction_id}}</a>
     
     {{sale}}
     </div>

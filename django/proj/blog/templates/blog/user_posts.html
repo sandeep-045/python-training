@@ -14,8 +14,8 @@
         <a href="{% url 'user-post' i.author.username %}"><small>{{i.author.username}}</small></a>
         <img src={{i.author.profile.image.url}} alt="none" class="rounded-circle" height=70 width =70 style="display: inline;float:right;">
         {% if request.user == i.author %}
-        <a href='/post/{{i.author_id}}/update/' class='btn btn-outline-primary card-text'>Update Post</a>
-        <a href='/post/{{i.author_id}}/delete/' class='btn btn-outline-danger card-item'>Delete Post</a>
+        <a href='/post/{{i.id}}/update/' class='btn btn-outline-primary card-text'>Update Post</a>
+        <a href='/post/{{i.id}}/delete/' class='btn btn-outline-danger card-item'>Delete Post</a>
         {% endif %}
       </div>
 </div>

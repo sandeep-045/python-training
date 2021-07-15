@@ -5,6 +5,7 @@ from .forms import SalesSearchForm
 import pandas as pd
 from reports.forms import ReportForm
 from .utils import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def home(request):
@@ -68,11 +69,11 @@ def home(request):
     return render(request,'sales/home.html',context)
 
 
-class SaleListView(ListView):
+class SaleListView(LoginRequiredMixin,ListView):
     model = Sale
     context_object_name='sales'
     template_name = "sales/main.html"
 
-class SaleDetailView(DetailView):
+class SaleDetailView(LoginRequiredMixin,DetailView):
     model=Sale
     template_name='sales/detail.html'

@@ -17,8 +17,6 @@ Home
 {% block content %} 
 
 <!-- Button trigger modal -->
-
-  
   <!-- Modal -->
   <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -29,7 +27,7 @@ Home
         </div>
         <div class="modal-body" id='modal-id'>
           <div id='alert-box'></div>
-          <form  id='report-form'>
+          <form  id='report-form' autocomplete="off">
             {% csrf_token %}
             {{report_form|crispy}}
           <br>
@@ -51,6 +49,7 @@ Home
     {{search_form}}
     <button type='submit' class='btn btn-primary mx-3'>Search</button>
 </form>
+
 {% if no_data %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <strong>{{no_data}}</strong>

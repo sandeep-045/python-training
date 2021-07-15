@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+Login
+{% endblock title %}
+
+
+{% block content %}
+{% if error_message %}
+<div class='alert alert-danger' role='alert'>
+{{error_message}}
+</div>
+
+{% endif %}
+<div class='container'>
+
+<form action="" method='POST' class='form-group' style='max-width: 30%;margin:auto; margin-top:10%;'>
+    <h1 class='text-muted text-center mb-3'> Login Here </h1>
+    {% csrf_token %}
+
+
+    {{form}}
+
+        
+
+    <br>
+    <button type='submit' class='btn btn-primary form-control'>Login</button>
+</form>
+</div>
+<script>
+
+    input=document.getElementsByTagName('input')
+    label=document.getElementsByTagName('label')
+    
+    // console.log(input)
+    label[0].className='text-primary mb-2'
+    label[1].className='text-primary mb-2'
+    input[1].className = 'form-control mb-4'
+    input[2].className = 'form-control'
+    input[1].placeholder='Enter your user name'
+    input[2].placeholder='Enter your password'
+    
+</script>
+{% endblock content %}
+    

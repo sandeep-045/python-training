@@ -6,7 +6,7 @@
             <small style="display:inline;float:right;">Post created: {{object.date|date:"F d,Y h:m:s "}}</small>
             <h3 class="card-title">{{object.title}}</h3>
 
-            <p class="card-text">{{object.content}}</p>
+            <p class="card-text">{{object.content|truncatewords:10}}</p>
             <small>Written By -</small>
             <a href="{% url 'user-post' object.author.username %}"><small>{{object.author.username}}</small></a>
             <img src={{object.author.profile.image.url}} alt="none" class="rounded-circle" height=70 width =70 style="display: inline;float:right;">
